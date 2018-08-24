@@ -4,6 +4,11 @@ import numpy as np
 
 
 class NumpyDataset(tdata.Dataset):
+    '''Subclass of torch.utils.data.Dataset from numpy array
+
+    X; array-like
+    y: array-like, optional
+    '''
     def __init__(self, X, y=None):
         self.X = torch.tensor(X).float()
         if y is not None:

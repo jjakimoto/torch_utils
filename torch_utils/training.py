@@ -5,6 +5,23 @@ import torch.nn.functional as F
 def train_step(model, train_loader, optimizer, epoch=None,
                loss_func=F.nll_loss, device='cpu', log_interval=100,
                **kwargs):
+    '''Train step for one epoch
+
+    Parameters
+    ----------
+    model: nn.Module subclass
+    train_loader: Defined by torch.utils.data.DataLoader
+    optimizer: optimizer of torch.optim
+    epoch: int, optional
+        Used for display
+    loss_func: function of torch.nn.functional
+        loss function to optimize
+    device: str, (default 'cpu')
+    log_interval: int
+        How frequent to display
+    kwargs: optional
+        parameters used for loss function
+    '''
     model.train()
     for batch_idx, (data, target) in enumerate(train_loader):
         data, target = data.to(device), target.to(device)
@@ -21,6 +38,18 @@ def train_step(model, train_loader, optimizer, epoch=None,
 
 def test_step(model, test_loader, loss_func=F.nll_loss,
               device='cpu', **kwargs):
+    '''Test step for one epoch
+
+    Parameters
+    ----------
+    model: nn.Module subclass
+    test_loader: Defined by torch.utils.data.DataLoader
+    loss_func: function of torch.nn.functional
+        loss function to optimize
+    device: str, (default 'cpu')
+    kwargs: optional
+        parameters used for loss function
+    '''
     model.eval()
     test_loss = 0
     correct = 0
