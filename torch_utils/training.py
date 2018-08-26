@@ -30,7 +30,7 @@ def train_step(model, train_loader, optimizer, epoch=None,
         loss = loss_func(output, target, **kwargs)
         loss.backward()
         optimizer.step()
-        if not log_interval and batch_idx % log_interval == 0:
+        if log_interval and batch_idx % log_interval == 0:
             print(f'Train Epoch: {epoch} \
                    [{epoch, batch_idx * len(data)}/{len(train_loader.dataset)} \
                    ({100. * batch_idx / len(train_loader)}%)]\tLoss: {loss.item()}')
