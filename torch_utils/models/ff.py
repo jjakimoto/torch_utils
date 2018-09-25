@@ -7,9 +7,6 @@ from .core import BaseModel
 
 
 class FeedForward(BaseModel):
-    def __init__(self, model_params, *args, **kwargs):
-        self.model_params = deepcopy(model_params)
-
     def _get_layer_from_param(self, param):
         param = deepcopy(param)
         name = param['name']

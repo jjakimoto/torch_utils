@@ -6,15 +6,17 @@ import torch.nn as nn
 
 class BaseModel(nn.Module):
     def __init__(self, model_params):
+        super(BaseModel, self).__init__()
         self.model_params = deepcopy(model_params)
+        self._build_model()
 
     @abstractmethod
     def _get_layer_from_param(self, param):
         raise NotImplementedError()
 
-    def _get_model(self, params):
+    def _build_model(self):
         layers = []
-        for param in params:
+        for param in self.model_params:
             layers.append(self._get_layer_from_param(param))
         self.layers = nn.ModuleList(layers)
 
