@@ -45,5 +45,3 @@ dist
 build
 build/*
 .idea
-params
-*/data/*
